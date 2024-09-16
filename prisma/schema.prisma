@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model battery_types {
+  type_id   Int        @id @unique(map: "battery_types_type_id_IDX") @default(autoincrement()) @db.UnsignedInt
+  type_name String?    @db.VarChar(20)
+  products  products[]
+}
+
+model categories {
+  id           Int        @id @default(autoincrement()) @db.UnsignedInt
+  categoryName String?    @db.VarChar(20)
+  name_local   String?    @db.VarChar(128)
+  products     products[]
+}
+
+model products {
+  id                Int            @id @default(autoincrement()) @db.UnsignedInt
+  name              String         @db.VarChar(100)
+  image             String?        @db.VarChar(200)
+  brand             String?        @db.VarChar(100)
+  model             String?        @db.VarChar(100)
+  chemie            String?        @db.VarChar(20)
+  nom_voltage       Float?
+  capacity          Float?
+  discharge_current Float?
+  connector         String?        @db.VarChar(10)
+  width             Float?
+  length            Float?
+  height            Float?
+  category_id       Int            @db.UnsignedInt
+  current           Float?
+  max_current       Float?
+  balance_current   Float?
+  battery_type      Int?           @db.UnsignedInt
+  description       String?        @db.LongText
+  isPopular         Boolean?       @default(false)
+  price             Float?
+  battery_types     battery_types? @relation(fields: [battery_type], references: [type_id], onDelete: Restrict, onUpdate: Restrict, map: "products_battery_types_FK")
+  categories        categories     @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "products_categories_FK")
+
+  @@index([battery_type], map: "products_battery_types_FK")
+  @@index([category_id], map: "products_categories_FK")
+  @@index([isPopular], map: "products_isPopular_IDX")
+}
