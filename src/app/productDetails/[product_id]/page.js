@@ -1,5 +1,6 @@
 import MaxWidthWrapper from "@/pagecomponents/MaxWidthWrapper";
 import { ProductTechDetails } from "./ProductTechDetails";
+import { CartHandler } from "@/components/CartHandler";
 
 const ProductDetails = async ({ params }) => {
   const { product_id } = params;
@@ -27,7 +28,8 @@ const ProductDetails = async ({ params }) => {
           </div>
           <div className="px-3">
             <div className="w-full h-px bg-slate-500 mb-4" />
-            <p className="font-medium text-xl my-4">Ціна: { product.price} грн.</p>
+            <p className="font-medium text-xl my-4">Ціна: {product.price} грн.</p>
+            <CartHandler product={ product} />
           </div>
         </div>
       </div>

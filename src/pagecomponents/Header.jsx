@@ -3,6 +3,7 @@ import Image from "next/image";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import SearchInput from "./SearchInput";
 import MobileMenu from "./MobileMenu";
+import { CartIcon } from "@/components/CartIcon";
 
 const Header = () => {
   return (
@@ -23,6 +24,7 @@ const Header = () => {
               <Link href="/about">Про нас</Link>
             </ul>
           </nav>
+          <CartIcon/>
           <div className="hidden md:flex">
             <SearchInput />
           </div>

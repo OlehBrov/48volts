@@ -1,6 +1,7 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "../pagecomponents/Header";
+import { CartProvider } from "@/context/CartContext";
 
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
@@ -13,9 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="uk">
       <body className={montserrat.className}>
-        {" "}
-        <Header />
-        {children}
+        <CartProvider>
+          <Header />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

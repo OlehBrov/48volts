@@ -42,10 +42,29 @@ model products {
   description       String?        @db.LongText
   isPopular         Boolean?       @default(false)
   price             Float?
+  quantity          Int?           @default(0) @db.UnsignedInt
   battery_types     battery_types? @relation(fields: [battery_type], references: [type_id], onDelete: Restrict, onUpdate: Restrict, map: "products_battery_types_FK")
   categories        categories     @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "products_categories_FK")
+  store             store?
 
   @@index([battery_type], map: "products_battery_types_FK")
   @@index([category_id], map: "products_categories_FK")
   @@index([isPopular], map: "products_isPopular_IDX")
+}
+
+model orders {
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
+  product       Int       @db.UnsignedInt
+  quantity      Int       @db.UnsignedInt
+  order_date    DateTime  @db.DateTime(0)
+  isCompleted   Boolean
+  complete_date DateTime? @db.DateTime(0)
+}
+
+model store {
+  product_id Int      @unique(map: "store_unique") @db.UnsignedInt
+  quantity   Int      @db.UnsignedInt
+  products   products @relation(fields: [product_id], references: [id], onUpdate: Restrict, map: "store_products_FK")
+
+  @@id([product_id, quantity])
 }
