@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "../pagecomponents/Header";
 import { CartProvider } from "@/context/CartContext";
+import Footer from "@/pagecomponents/Footer";
 
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
         </CartProvider>
+        <Footer/>
       </body>
     </html>
   );

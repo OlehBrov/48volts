@@ -11,7 +11,7 @@ export const Populars = async () => {
   return (
     <>
       <div className="flex justify-center mb-6">
-        <h2 className="text-3xl">Популярні товари</h2>
+        <h2 className="text-4xl text-center mb-8">Популярні товари</h2>
       </div>
       <div className="grid grid-cols-3 gap-3">
         {<ProductsGrid data={popular} limit={3} />}

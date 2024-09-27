@@ -1,4 +1,7 @@
 import SwiperElem from "@/components/Swiper";
+import Advantages from "@/pagecomponents/Advantages";
+import Description from "@/pagecomponents/Description";
+import MainProducts from "@/pagecomponents/MainProducts";
 import MaxWidthWrapper from "@/pagecomponents/MaxWidthWrapper";
 import { Populars } from "@/pagecomponents/Populars";
 import Image from "next/image";
@@ -19,6 +22,21 @@ export default function Home() {
       <section className="py-20">
         <MaxWidthWrapper>
           <Populars />
+        </MaxWidthWrapper>
+      </section>
+      <section className="py-20">
+        <MaxWidthWrapper>
+          <Description />
+        </MaxWidthWrapper>
+      </section>
+      <section className="bg-blue-200">
+        <MaxWidthWrapper>
+          <Advantages />
+        </MaxWidthWrapper>
+      </section>
+      <section>
+        <MaxWidthWrapper>
+          <MainProducts />
         </MaxWidthWrapper>
       </section>
     </main>

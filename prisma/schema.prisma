@@ -17,6 +17,7 @@ model categories {
   id           Int        @id @default(autoincrement()) @db.UnsignedInt
   categoryName String?    @db.VarChar(20)
   name_local   String?    @db.VarChar(128)
+  image        String?    @db.VarChar(255)
   products     products[]
 }
 

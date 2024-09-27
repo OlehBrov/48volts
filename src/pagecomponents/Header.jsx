@@ -4,6 +4,8 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import SearchInput from "./SearchInput";
 import MobileMenu from "./MobileMenu";
 import { CartIcon } from "@/components/CartIcon";
+import Logo from "@/components/Logo";
+import { HeaderLinks } from "@/components/HeaderLinks";
 
 const Header = () => {
   return (
@@ -11,18 +13,8 @@ const Header = () => {
       <MaxWidthWrapper>
         <div className="flex justify-between items-center">
           <nav className="flex w-full">
-            <Link href="/" className="flex w-auto items-center">
-              <div className="flex w-30 h-12">
-                <img src="/logo-removebg.png" className="w-full object-cover" />
-              </div>
-
-              <p className="font-bold text-4xl text-blue-600">48 Volts</p>
-            </Link>
-            <ul className="hidden md:flex items-center gap-4 mx-auto">
-              <Link href="/battaries">Батареї</Link>
-              <Link href="/spare">Додаткові замчастини</Link>
-              <Link href="/about">Про нас</Link>
-            </ul>
+            <Logo/>
+           <HeaderLinks/>
           </nav>
           <CartIcon/>
           <div className="hidden md:flex">

@@ -17,7 +17,7 @@ export async function GET(request) {
         categories: true,
       },
     });
-    console.log("res", res);
+  
     return new Response(
       JSON.stringify({
         product: res,

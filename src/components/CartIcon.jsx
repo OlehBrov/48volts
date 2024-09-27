@@ -1,12 +1,13 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export const CartIcon = () => {
   const { cart } = useCart();
-  
+
   return (
-    <div className="relative w-6 h-6 mr-6">
+    <Link href="/cart" className="relative w-6 h-6 mr-6">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -18,7 +19,7 @@ export const CartIcon = () => {
         height="24"
         width="24"
       >
-        <desc>Cart Streamline Icon: https://streamlinehq.com</desc>
+        
         <path
           d="M16.5 21a1.5 1.5 0 1 0 0 -3 1.5 1.5 0 0 0 0 3m-8 0a1.5 1.5 0 1 0 0 -3 1.5 1.5 0 0 0 0 3M3.71 5.4h15.214c1.378 0 2.373 1.27 1.995 2.548l-1.654 5.6C19.01 14.408 18.196 15 17.27 15H8.112c-0.927 0 -1.742 -0.593 -1.996 -1.452zm0 0L3 3"
           strokeWidth="1.5"
@@ -29,6 +30,6 @@ export const CartIcon = () => {
           {cart.length}
         </span>
       )}
-    </div>
+    </Link>
   );
 };

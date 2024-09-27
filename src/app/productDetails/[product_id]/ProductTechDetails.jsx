@@ -16,7 +16,7 @@ export const ProductTechDetails = ({ product }) => {
     balance_current,
     battery_type,
   } = product;
-  console.log("props product", product);
+
 
   return (
     <div>

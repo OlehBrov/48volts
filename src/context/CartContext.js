@@ -19,6 +19,7 @@ export const CartProvider = ({ children }) => {
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
+
     if (cart.length > 0) {
       localStorage.setItem("48voltscart", JSON.stringify(cart));
     } else {
@@ -28,16 +29,57 @@ export const CartProvider = ({ children }) => {
 
   // Add item to cart
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => {
+      const isAddedIdx = prevCart.findIndex((item) => item.id === product.id);
+      if (isAddedIdx !== -1) {
+        const updatedCart = prevCart.map((item, index) =>
+          index === isAddedIdx
+            ? { ...item, quantity: item.quantity + product.quantity }
+            : item
+        );
+        return updatedCart;
+      } else return [...prevCart, product];
+    });
   };
 
   // Remove item from cart
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
-
+  const increaseProductQuantity = (productId) => {
+    setCart((prevCart) => {
+      return prevCart.map((prod) =>
+        prod.id === productId
+          ? {
+              ...prod,
+              quantity: prod.quantity + 1,
+            }
+          : prod
+      );
+    });
+  };
+  const decreaseProductQuantity = (productId) => {
+    setCart((prevCart) => {
+      return prevCart.map((prod) =>
+        prod.id === productId
+          ? {
+              ...prod,
+              quantity: prod.quantity - 1,
+            }
+          : prod
+      );
+    });
+  };
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        increaseProductQuantity,
+        decreaseProductQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
